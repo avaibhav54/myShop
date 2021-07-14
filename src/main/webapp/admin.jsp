@@ -1,4 +1,6 @@
 
+<%@page import="com.dao.productDao"%>
+<%@page import="com.dao.userDao"%>
 <%@page import="com.entities.Category"%>
 <%@page import="java.util.List"%>
 <%@page import="com.helper.FactoryProvider"%>
@@ -37,7 +39,11 @@ if (user == null) {
 	<%@include file="components/messagesuccess.jsp" %>
 	</div>
 		<div class="row   mt-3">
-
+<%
+userDao ud=new userDao(FactoryProvider.getFactory());
+catDao cd=new catDao(FactoryProvider.getFactory());
+productDao pd=new productDao(FactoryProvider.getFactory());
+%>
 			<!-- first column show users -->
 			<div class="col-md-4">
 				<div class="card">
@@ -45,7 +51,7 @@ if (user == null) {
 					<div class="container">
 					<img style="max-width:115px" class="  rounded-circle img-fluid"     alt="" src="img/programmer.png">
 					</div>
-					<h1>400</h1>
+					<h1><%=ud.getTotalUser() %></h1>
 						<h1>Users</h1>
 
 					</div>
@@ -61,7 +67,7 @@ if (user == null) {
 					<div class="container">
 					<img style="max-width:115px" class="img-fluid"     alt="" src="img/list.png">
 					</div>
-					<h1>400</h1>
+					<h1><%=cd.getTotalCategories() %></h1>
 						<h1>Categories</h1>
 
 					</div>
@@ -77,7 +83,7 @@ if (user == null) {
 						<div class="container">
 					<img style="max-width:115px" class="img-fluid"     alt="" src="img/delivery-box.png">
 					</div>
-					<h1>400</h1>
+					<h1><%=pd.getTotalProduct() %></h1>
 						
 							<h1>Products</h1>
 
@@ -191,12 +197,11 @@ if (user == null) {
         <input required  type="number"   class="form-control"  name="pQuantity"  placeholder="Enter Product Quantity">
         </div>
           <div class="form-group">
-        <input required  type="number"   class="form-control"  name="pDiscount"  placeholder="Enter Product Discount">
+        <input required  type="number"   class="form-control"  name="pDiscount"  placeholder="Enter Product Discount  (in Percentage)" >
         </div>
         
         <div class="form-group">
                   <%
-          catDao cd=new catDao(FactoryProvider.getFactory());
           List<Category> list=cd.getCategories();
           
           %>
@@ -240,5 +245,6 @@ if (user == null) {
   </div>
 </div>
 
+	<%@include file="components/modal.jsp"%>
 </body>
 </html>

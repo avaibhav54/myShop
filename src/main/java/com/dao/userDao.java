@@ -1,5 +1,7 @@
 package com.dao;
 
+import java.util.List;
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -32,5 +34,14 @@ public User getUserByEmail(String mail,String password)
 		e.printStackTrace();
 	}
 	return user;
+}
+
+public int getTotalUser()
+{
+	String query="from User";
+	Session session= this.factory.openSession();
+	Query q=session.createQuery(query);
+	List<User>ls=q.list();
+	return ls.size();
 }
 }

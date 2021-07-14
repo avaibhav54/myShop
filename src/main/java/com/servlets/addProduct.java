@@ -1,6 +1,10 @@
 package com.servlets;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
@@ -61,6 +65,16 @@ public class addProduct extends HttpServlet {
 sess.save(pro);
 		tx.commit();
 		sess.close();
+		//pic upload
+		String path=request.getRealPath("img")+ File.separator+"products"+File.separator+pic.getSubmittedFileName();
+		FileOutputStream fos=new FileOutputStream(path);
+		InputStream is= pic.getInputStream();
+		//reading data
+		byte[] data=new byte[is.available()];
+		is.read(data);
+		fos.write(data);
+		fos.close();
+		
 		out.println("done");
 		HttpSession se=request.getSession();
 		se.setAttribute("message","Product Added Successfully");

@@ -9,6 +9,12 @@
 <%@include file="components/common.jsp" %>
 </head>
 <body>
-<h1>about page</h1>
+
+
+<%@include file="navbar.jsp" %>
+
+
+
+<%@include file="components/modal.jsp" %>
 </body>
 </html>

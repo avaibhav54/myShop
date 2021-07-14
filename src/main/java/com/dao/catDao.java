@@ -8,6 +8,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import com.entities.Category;
+import com.entities.User;
 
 public class catDao {
 
@@ -42,5 +43,13 @@ try {
 	e.printStackTrace();
 }
 return cat;
+	}
+	public int getTotalCategories()
+	{
+		String query="from Category";
+		Session session= this.factory.openSession();
+		Query q=session.createQuery(query);
+		List<Category>ls=q.list();
+		return ls.size();
 	}
 }

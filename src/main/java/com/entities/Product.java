@@ -106,6 +106,9 @@ public String toString() {
 	return "Product [pId=" + pId + ", pName=" + pName + ", pDesc=" + pDesc + ", pPhoto=" + pPhoto + ", pPrice=" + pPrice
 			+ ", pDiscount=" + pDiscount + ", pQuantity=" + pQuantity + "]";
 }
+public Product() {
+	super();
+}
 
 
 }

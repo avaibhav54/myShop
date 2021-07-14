@@ -31,7 +31,9 @@ User user1= (User)session.getAttribute("current-user");
     </ul>
     
   <ul class="navbar-nav ml-auto">
-
+   <li class="nav-item active">
+        <a class="nav-link" href="#"    data-toggle="modal" data-target="#cart"><i class="fa fa-cart-plus"  style="font-size:20px;"></i><span class="ml-2   cart-items"  >(5)</span> </a>
+      </li>
 <%
 if(user1==null)
 {
@@ -49,9 +51,27 @@ else
 {
 	%>
 	   <li class="nav-item active">
+	   <%
+	   if(user1.getuType().equals("admin"))
+	   {
+		   %>
+		   
+        <a class="nav-link" href="admin.jsp"><%=user1.getuName() %> </a>
+		   <%
+	   }
+	   else
+	   {
+		  %>
+		  
         <a class="nav-link" href="#"><%=user1.getuName() %> </a>
+		  <%
+	   }
+	   %>
+	   
       </li>
 	   <li class="nav-item active">
+	   
+	   
         <a class="nav-link" href="logoutServlet">Logout </a>
       </li>
 	
